@@ -10,14 +10,19 @@ Feature: Setup builds
     Then my application should be present
 
   #Scenario: Add a build script to an application
-    #Given I am signed up
+    #Given I am signed in
     #And my "facebook killer" app was created
     #When I add a build script to my application
     #Then I the script should be visible on my app page
 
   #Scenario: Run a build
-    #Given I am signed up
+    #Given I am signed in
     #And my "facebook killer" app was created
     #And a build script is associated with my application
     #When I run a build of my application
     #Then I should see my build status
+
+
+# TODO:
+# * add actual authentication to the app_path
+# * scope apps only for the logged in user
