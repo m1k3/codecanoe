@@ -1,6 +1,6 @@
 class AppsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_app, only: [:show, :edit, :update, :destroy]
+  before_action :set_app, only: [:show, :edit, :update, :destroy, :run_builds]
 
   # GET /apps
   # GET /apps.json
@@ -60,6 +60,11 @@ class AppsController < ApplicationController
       format.html { redirect_to apps_url }
       format.json { head :no_content }
     end
+  end
+
+  def run_builds
+    @app.run_builds
+    redirect_to apps_path, notice: 'Builds started'
   end
 
   private

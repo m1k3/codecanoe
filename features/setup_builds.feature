@@ -35,9 +35,8 @@ Feature: Setup builds
     When I delete my build configuration
     Then my build configuration should not be visible on my app page
 
-  #Scenario: Run a build
-    #Given I am signed in
-    #And my "facebook killer" app was created
-    #And a build script is associated with my application
-    #When I run a build of my application
-    #Then I should see my build status
+  Scenario: Run a build
+    Given I am signed in
+    And my "facebook killer" app with a "default" build configuration was created
+    When I run my build of my application
+    Then I should see my build running

@@ -47,6 +47,11 @@ When(/^I open my apps$/) do
   click_link 'Go to my applications'
 end
 
+When(/^I open my app$/) do
+  visit app_path(@my_application)
+end
+
+
 Then(/^someone elses application should not be present$/) do
   find('.js-applications').should have_no_content(@other_application_name)
 end
@@ -63,7 +68,7 @@ When(/^I add a build configuration to my application$/) do
 end
 
 Then(/^my build configuration should be visible on my app page$/) do
-  visit app_path(@my_application)
+  step %{I open my app}
   page.should have_content(@my_build_configuration_name)
 end
 
@@ -74,7 +79,7 @@ Given(/^my "(.*?)" app with a "(.*?)" build configuration was created$/) do |arg
 end
 
 When(/^I edit my build configuration$/) do
-  visit app_path(@my_application)
+  step %{I open my app}
   click_link @my_build_configuration.name
   @my_build_configuration_name = 'standard'
   fill_in 'Name', with: @my_build_configuration_name
@@ -90,4 +95,15 @@ Then(/^my build configuration should not be visible on my app page$/) do
   puts BuildConfiguration.all.inspect
   visit app_path(@my_application)
   page.should have_no_content(@my_build_configuration.name)
+end
+
+
+When(/^I run my build of my application$/) do
+  step %{I open my apps}
+  click_link 'Run builds'
+end
+
+Then(/^I should see my build running$/) do
+  step %{I open my apps}
+  page.should have_content("#{@my_build_configuration.name} is currently running")
 end

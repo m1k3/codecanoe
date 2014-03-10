@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   resources :apps do
+    post :run_builds, on: :member
     resources :build_configurations, only: [:new, :create, :edit, :update, :destroy]
   end
 
