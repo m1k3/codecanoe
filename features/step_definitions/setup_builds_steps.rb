@@ -43,7 +43,8 @@ Given(/^someone else has a "(.*?)" app$/) do |other_application_name|
 end
 
 When(/^I open my apps$/) do
-  visit apps_path
+  visit root_url
+  click_link 'Go to my applications'
 end
 
 Then(/^someone elses application should not be present$/) do
@@ -80,7 +81,13 @@ When(/^I edit my build configuration$/) do
   click_button 'Update Build configuration'
 end
 
-Then(/^I my script should not be visible on my app page$/) do
+When(/^I delete my build configuration$/) do
   visit app_path(@my_application)
-  page.should have_no_content(@my_build_configuration_name)
+  click_link 'Remove'
+end
+
+Then(/^my build configuration should not be visible on my app page$/) do
+  puts BuildConfiguration.all.inspect
+  visit app_path(@my_application)
+  page.should have_no_content(@my_build_configuration.name)
 end

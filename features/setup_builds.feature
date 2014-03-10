@@ -1,7 +1,7 @@
 Feature: Setup builds
 
   In order to have an awesome tollchain to build my software
-  As a software developer
+  As a registered software developer
   I want to add my application build configurations to codecanoe
 
   Scenario: Create an application
@@ -32,8 +32,8 @@ Feature: Setup builds
   Scenario: Delete a build script
     Given I am signed in
     And my "facebook killer" app with a "default" build configuration was created
-    When I edit my build configuration
-    Then my build configuration should be visible on my app page
+    When I delete my build configuration
+    Then my build configuration should not be visible on my app page
 
   #Scenario: Run a build
     #Given I am signed in

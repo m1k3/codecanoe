@@ -47,7 +47,7 @@ class BuildConfigurationsController < ApplicationController
   def destroy
     @build_configuration.destroy
     respond_to do |format|
-      format.html { redirect_to build_configurations_url }
+      format.html { redirect_to app_path(@app) }
       format.json { head :no_content }
     end
   end

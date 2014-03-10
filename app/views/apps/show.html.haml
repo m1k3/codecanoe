@@ -6,6 +6,7 @@
   %strong Build configurations:
   - @app.build_configurations.each do |build_configuration|
     = link_to build_configuration.name, edit_app_build_configuration_path(@app, build_configuration)
+    = link_to 'Remove', app_build_configuration_path(@app, build_configuration), data: {method: :delete, confirm: 'Are you sure?'}
 
   = link_to 'New Configuration', new_app_build_configuration_path(@app)
 
