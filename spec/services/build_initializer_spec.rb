@@ -1,16 +1,21 @@
 require 'spec_helper'
 
 describe BuildInitializer do
-  it 'should create a build' do
+  before :each do
+    BuildRunner.stub(:execute)
+  end
+
+  it 'should initialize a build' do
     app = double
-    app.should_receive(:create_build).and_return(42) # 42 is the ID of the newly created build
+    app.should_receive(:create_builds).and_return([double])
 
     described_class.execute(app)
   end
-  it 'should initialize the build' do
-    app = double(create_build: 42)
+  it 'should run the builds' do
+    builds = [double]
+    app = double(create_builds: builds)
 
-    BuildRunner.should_receive(:execute).with(42)
+    BuildRunner.should_receive(:execute).with(builds)
     described_class.execute(app)
   end
 end

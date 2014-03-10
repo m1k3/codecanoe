@@ -92,7 +92,6 @@ When(/^I delete my build configuration$/) do
 end
 
 Then(/^my build configuration should not be visible on my app page$/) do
-  puts BuildConfiguration.all.inspect
   visit app_path(@my_application)
   page.should have_no_content(@my_build_configuration.name)
 end
@@ -100,6 +99,10 @@ end
 
 When(/^I run my build of my application$/) do
   step %{I open my apps}
+
+  stub_request(:post, "http://example.com/builds").
+    to_return(:status => 200)
+
   click_link 'Run builds'
 end
 

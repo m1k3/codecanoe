@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140310102051) do
+ActiveRecord::Schema.define(version: 20140310120751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,18 @@ ActiveRecord::Schema.define(version: 20140310102051) do
   end
 
   add_index "build_configurations", ["app_id"], name: "index_build_configurations_on_app_id", using: :btree
+
+  create_table "builds", force: true do |t|
+    t.integer  "app_id"
+    t.integer  "build_configuration_id"
+    t.integer  "status",                 default: 0, null: false
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "builds", ["app_id"], name: "index_builds_on_app_id", using: :btree
+  add_index "builds", ["build_configuration_id"], name: "index_builds_on_build_configuration_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

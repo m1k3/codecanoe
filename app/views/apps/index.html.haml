@@ -14,3 +14,8 @@
         %td= link_to 'Destroy', app, method: :delete, data: { confirm: 'Are you sure?' }
 %br/
 = link_to 'New App', new_app_path
+
+%h2 Running builds
+- @builds.each do |build|
+  = "#{build.name} #{build.status_text}"
+
