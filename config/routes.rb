@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :apps
+
+  resources :apps do
+    resources :build_configurations, only: [:new, :create, :edit, :update, :destroy]
+  end
 
   devise_for :users
   root to: "application#index"

@@ -49,3 +49,19 @@ end
 Then(/^someone elses application should not be present$/) do
   find('.js-applications').should have_no_content(@other_application_name)
 end
+
+
+When(/^I add a build configuration to my application$/) do
+  step %{I open my apps}
+  click_link 'Show'
+  click_link 'New Configuration'
+  @my_script_name = 'default'
+  fill_in 'Name', with: @my_script_name
+  fill_in 'Commands', with: 'bundle exec rake'
+  click_button 'Create Build configuration'
+end
+
+Then(/^my build configuration should be visible on my app page$/) do
+  visit app_path(@my_application)
+  page.should have_content(@my_script_name)
+end

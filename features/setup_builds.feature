@@ -2,7 +2,7 @@ Feature: Setup builds
 
   In order to have an awesome tollchain to build my software
   As a software developer
-  I want to add my application build scripts to codecanoe
+  I want to add my application build configurations to codecanoe
 
   Scenario: Create an application
     Given I am signed up
@@ -17,11 +17,23 @@ Feature: Setup builds
     Then my application should be present
     And someone elses application should not be present
 
-  #Scenario: Add a build script to an application
+  Scenario: Add a build script to an application
+    Given I am signed in
+    And my "facebook killer" app was created
+    When I add a build configuration to my application
+    Then my build configuration should be visible on my app page
+
+  #Scenario: Edit a build script to an application
     #Given I am signed in
-    #And my "facebook killer" app was created
-    #When I add a build script to my application
-    #Then I the script should be visible on my app page
+    #And my "facebook killer" app with a "default" build configuration was created
+    #When I edit my build configuration
+    #Then I my script should be visible on my app page
+
+  #Scenario: Delete a build script to an application
+    #Given I am signed in
+    #And my "facebook killer" app with a "default" build configuration was created
+    #When I edit my build configuration
+    #Then I my script should not be visible on my app page
 
   #Scenario: Run a build
     #Given I am signed in
