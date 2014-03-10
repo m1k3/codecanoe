@@ -48,4 +48,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'launchy' # for save_and_open_page
   gem 'rspec-rails'
+
+  gem 'factory_girl_rails'
 end

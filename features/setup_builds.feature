@@ -9,6 +9,14 @@ Feature: Setup builds
     When I create my "facebook killer" app
     Then my application should be present
 
+  Scenario: User applications
+    Given I am signed in
+    And my "facebook killer" app was created
+    And someone else has a "twitter killer" app
+    When I open my apps
+    Then my application should be present
+    And someone elses application should not be present
+
   #Scenario: Add a build script to an application
     #Given I am signed in
     #And my "facebook killer" app was created
@@ -21,8 +29,3 @@ Feature: Setup builds
     #And a build script is associated with my application
     #When I run a build of my application
     #Then I should see my build status
-
-
-# TODO:
-# * add actual authentication to the app_path
-# * scope apps only for the logged in user

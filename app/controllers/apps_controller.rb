@@ -1,10 +1,11 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /apps
   # GET /apps.json
   def index
-    @apps = App.all
+    @apps = current_user.apps
   end
 
   # GET /apps/1
@@ -24,7 +25,7 @@ class AppsController < ApplicationController
   # POST /apps
   # POST /apps.json
   def create
-    @app = App.new(app_params)
+    @app = App.new(app_params.merge(owner: current_user))
 
     respond_to do |format|
       if @app.save
