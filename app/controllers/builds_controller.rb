@@ -4,12 +4,14 @@ class BuildsController < ApplicationController
 
   def success
     if @build.succeeded!
+      BuildNotifications.success(@build).deliver
       head :ok
     end
   end
 
   def fail
     if @build.failed!
+      BuildNotifications.failure(@build).deliver
       head :ok
     end
   end

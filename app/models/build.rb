@@ -5,7 +5,6 @@ class Build < ActiveRecord::Base
     2 => 'failed',
   }
 
-
   belongs_to :app
   belongs_to :build_configuration
 
@@ -20,5 +19,9 @@ class Build < ActiveRecord::Base
   end
   def failed!
     update_attribute(:status, 2)
+  end
+
+  def owner_email
+    app.owner.email
   end
 end
