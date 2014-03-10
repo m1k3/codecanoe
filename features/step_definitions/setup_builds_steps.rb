@@ -114,7 +114,7 @@ end
 Given(/^a build finished successfully$/) do
   step %{my "facebook killer" app with a "default" build configuration was created}
   @my_build = Build.create(app: @my_application, build_configuration: @my_build_configuration)
-  post build_success_path(id: @my_build.id, format: :json)
+  post build_success_path(id: @my_build.id, access_token: 'theToken')
 end
 
 Then(/^I should receive an build (.+) email notification$/) do |status_text|
@@ -125,7 +125,7 @@ end
 Given(/^a build failed$/) do
   step %{my "facebook killer" app with a "default" build configuration was created}
   @my_build = Build.create(app: @my_application, build_configuration: @my_build_configuration)
-  post build_fail_path(id: @my_build.id)
+  post build_fail_path(id: @my_build.id, access_token: 'theToken')
 end
 
 Then(/^I should see that my build (.+)$/) do |status_text|
