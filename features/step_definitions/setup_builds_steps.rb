@@ -1,16 +1,20 @@
 Given(/^I am signed up$/) do
   visit root_url
   click_link 'Sign Up'
-  fill_in :email, with: 'bob@example.com'
-  fill_in :password, with: 'password'
-  fill_in :password_confirmation, with: 'password'
-  click_button 'Submit'
+  fill_in 'Email', with: 'bob@example.com'
+  fill_in 'Password', with: 'password'
+  fill_in 'Password confirmation', with: 'password'
+  click_button 'Sign up'
 end
 
-When(/^I create my "(.*?)" app$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
+When(/^I create my "(.*?)" app$/) do |my_application_name|
+  @my_application_name = my_application_name
+  visit applications_path
+  click_link 'Create new app'
+  fill_in 'Name', with: @my_application_name
+  click_button 'Create app'
 end
 
 Then(/^my application should be present$/) do
-  pending # express the regexp above with the code you wish you had
+  find('.js-applications').should have_content(@my_application_name)
 end
