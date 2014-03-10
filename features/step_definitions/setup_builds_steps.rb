@@ -55,13 +55,32 @@ When(/^I add a build configuration to my application$/) do
   step %{I open my apps}
   click_link 'Show'
   click_link 'New Configuration'
-  @my_script_name = 'default'
-  fill_in 'Name', with: @my_script_name
+  @my_build_configuration_name = 'default'
+  fill_in 'Name', with: @my_build_configuration_name
   fill_in 'Commands', with: 'bundle exec rake'
   click_button 'Create Build configuration'
 end
 
 Then(/^my build configuration should be visible on my app page$/) do
   visit app_path(@my_application)
-  page.should have_content(@my_script_name)
+  page.should have_content(@my_build_configuration_name)
+end
+
+
+Given(/^my "(.*?)" app with a "(.*?)" build configuration was created$/) do |arg1, arg2|
+  step %{my "facebook killer" app was created}
+  @my_build_configuration = create(:build_configuration, app: @my_application)
+end
+
+When(/^I edit my build configuration$/) do
+  visit app_path(@my_application)
+  click_link @my_build_configuration.name
+  @my_build_configuration_name = 'standard'
+  fill_in 'Name', with: @my_build_configuration_name
+  click_button 'Update Build configuration'
+end
+
+Then(/^I my script should not be visible on my app page$/) do
+  visit app_path(@my_application)
+  page.should have_no_content(@my_build_configuration_name)
 end

@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :build_configuration do
-    name "MyString"
-    commands "MyText"
+    name "default"
+    commands "bundle exec rake"
   end
 end

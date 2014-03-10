@@ -23,17 +23,17 @@ Feature: Setup builds
     When I add a build configuration to my application
     Then my build configuration should be visible on my app page
 
-  #Scenario: Edit a build script to an application
-    #Given I am signed in
-    #And my "facebook killer" app with a "default" build configuration was created
-    #When I edit my build configuration
-    #Then I my script should be visible on my app page
+  Scenario: Edit a build script
+    Given I am signed in
+    And my "facebook killer" app with a "default" build configuration was created
+    When I edit my build configuration
+    Then my build configuration should be visible on my app page
 
-  #Scenario: Delete a build script to an application
-    #Given I am signed in
-    #And my "facebook killer" app with a "default" build configuration was created
-    #When I edit my build configuration
-    #Then I my script should not be visible on my app page
+  Scenario: Delete a build script
+    Given I am signed in
+    And my "facebook killer" app with a "default" build configuration was created
+    When I edit my build configuration
+    Then my build configuration should be visible on my app page
 
   #Scenario: Run a build
     #Given I am signed in

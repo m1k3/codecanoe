@@ -5,8 +5,7 @@
 %p
   %strong Build configurations:
   - @app.build_configurations.each do |build_configuration|
-    = build_configuration.name
-    -#= link_to "Edit #{build_configuration.name}", edit_build_configuration_app_path(@app, build_configuration)
+    = link_to build_configuration.name, edit_app_build_configuration_path(@app, build_configuration)
 
   = link_to 'New Configuration', new_app_build_configuration_path(@app)
 
