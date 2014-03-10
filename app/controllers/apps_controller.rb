@@ -25,7 +25,7 @@ class AppsController < ApplicationController
   # POST /apps
   # POST /apps.json
   def create
-    @app = App.new(app_params.merge(owner: current_user))
+    @app = current_user.apps.new(app_params)
 
     respond_to do |format|
       if @app.save
@@ -65,7 +65,7 @@ class AppsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_app
-      @app = App.find(params[:id])
+      @app = current_user.apps.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
