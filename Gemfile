@@ -39,6 +39,9 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 
+gem 'devise'
+
+
 group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
