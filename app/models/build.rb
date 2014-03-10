@@ -1,6 +1,6 @@
 class Build < ActiveRecord::Base
   STATUS_TEXTS = {
-    0 => 'is currently running',
+    0 => 'is running',
     1 => 'succeeded',
     2 => 'failed',
   }
@@ -13,5 +13,12 @@ class Build < ActiveRecord::Base
 
   def status_text
     STATUS_TEXTS[status]
+  end
+
+  def succeeded!
+    update_attribute(:status, 1)
+  end
+  def failed!
+    update_attribute(:status, 2)
   end
 end

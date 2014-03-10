@@ -108,5 +108,37 @@ end
 
 Then(/^I should see my build running$/) do
   step %{I open my apps}
-  page.should have_content("#{@my_build_configuration.name} is currently running")
+  page.should have_content("#{@my_build_configuration.name} is running")
+end
+
+Given(/^A build finished successfully$/) do
+  step %{my "facebook killer" app with a "default" build configuration was created}
+  @my_build = Build.create(app: @my_application, build_configuration: @my_build_configuration)
+  post build_success_path(id: @my_build.id, format: :json)
+end
+
+Then(/^I should see that my build succeeded$/) do
+  step %{I open my apps}
+  page.should have_content("#{@my_build_configuration.name} succeeded")
+end
+
+Then(/^I should receive an build succeeded email notification$/) do
+  ActionMailer::Base.deliveries.should be_present
+  ActionMailer::Base.deliveries.last.subject.should include('succeeded')
+end
+
+Given(/^a build failed$/) do
+  step %{my "facebook killer" app with a "default" build configuration was created}
+  @my_build = Build.create(app: @my_application, build_configuration: @my_build_configuration)
+  post build_fail_path(id: @my_build.id)
+end
+
+Then(/^I should see that my build failed$/) do
+  step %{I open my apps}
+  page.should have_content("#{@my_build_configuration.name} failed")
+end
+
+Then(/^I should receive an build failed email notification$/) do
+  ActionMailer::Base.deliveries.should be_present
+  ActionMailer::Base.deliveries.last.subject.should include('failed')
 end

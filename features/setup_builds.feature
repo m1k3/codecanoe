@@ -40,3 +40,15 @@ Feature: Setup builds
     And my "facebook killer" app with a "default" build configuration was created
     When I run my build of my application
     Then I should see my build running
+
+  Scenario: A build finished successfully
+    Given I am signed in
+    And A build finished successfully
+    Then I should see that my build succeeded
+    And I should receive an build succeeded email notification
+
+  Scenario: A build failed
+    Given I am signed in
+    And a build failed
+    Then I should see that my build failed
+    And I should receive an build failed email notification

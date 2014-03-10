@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
+
+  post 'builds/:id/success' => 'builds#success', as: :build_success
+  post 'builds/:id/fail' => 'builds#fail', as: :build_fail
+
   root to: "application#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
