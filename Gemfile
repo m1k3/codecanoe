@@ -54,3 +54,7 @@ group :development, :test do
 
   gem 'pry-rails'
 end
+
+
+# heroku requires this
+gem 'rails_12factor', group: :production
