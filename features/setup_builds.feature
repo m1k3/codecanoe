@@ -43,7 +43,7 @@ Feature: Setup builds
 
   Scenario: A build finished successfully
     Given I am signed in
-    And A build finished successfully
+    And a build finished successfully
     Then I should see that my build succeeded
     And I should receive an build succeeded email notification
 

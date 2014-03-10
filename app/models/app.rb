@@ -3,6 +3,7 @@ class App < ActiveRecord::Base
   has_many :build_configurations
   has_many :builds
 
+  validates :name, presence: true, length: { maximum: 200 }
 
   def run_builds
     BuildInitializer.execute(self)

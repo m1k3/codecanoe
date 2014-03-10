@@ -6,7 +6,7 @@ class AppsController < ApplicationController
   # GET /apps.json
   def index
     @apps = current_user.apps
-    @builds = Build.where(app: @apps).order(:created_at).limit(10)
+    @builds = Build.where(app: @apps).order('created_at DESC').limit(10)
   end
 
   # GET /apps/1
