@@ -39,7 +39,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 
-gem 'haml-rails'
+gem 'haml'
 gem 'devise'
 
 
